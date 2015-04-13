@@ -1,7 +1,7 @@
 Package.describe({
   summary: "A package that provides a blog at /blog",
   version: "0.7.0",
-  name: "DavidSichau:blog",
+  name: "davidsichau:blog",
   git: "https://github.com/DavidSichau/meteor-blog"
 });
 
@@ -86,7 +86,7 @@ Package.onUse(function(api) {
     'alanning:roles@1.2.13',
     'meteorhacks:fast-render@2.0.2',
     'meteorhacks:subs-manager@1.2.0',
-    'summernote:standalone'
+    'summernote:standalone@0.6.0_1'
   ], both);
 
   // FILES FOR SERVER AND CLIENT
