@@ -1,8 +1,8 @@
 Package.describe({
   summary: "A package that provides a blog at /blog",
-  version: "0.6.3",
-  name: "ryw:blog",
-  git: "https://github.com/Differential/meteor-blog.git"
+  version: "0.7.0",
+  name: "DavidSichau:blog",
+  git: "https://github.com/DavidSichau/meteor-blog"
 });
 
 Package.onUse(function(api) {
@@ -28,19 +28,11 @@ Package.onUse(function(api) {
   api.addFiles([
     'client/stylesheets/lib/side-comments/side-comments.css',
     'client/stylesheets/lib/side-comments/default.css',
-    'client/stylesheets/lib/medium-editor.css',
-    'client/stylesheets/lib/medium-themes/bootstrap.css',
-    'client/stylesheets/lib/medium-editor-insert-plugin-frontend.css',
-    'client/stylesheets/lib/medium-editor-insert-plugin.css',
     'client/stylesheets/lib/bootstrap-tagsinput.css',
     'client/boot.coffee',
     'client/compatibility/side-comments.js',
-    'client/compatibility/medium-editor.js',
-    'client/compatibility/medium-editor-insert-plugin.all.js',
     'client/compatibility/bootstrap-tagsinput.js',
     'client/compatibility/typeahead.jquery.js',
-    'client/compatibility/beautify-html.js',
-    'client/compatibility/highlight.pack.js',
     'client/views/404.html',
     'client/views/custom.html',
     'client/views/custom.coffee',
@@ -48,7 +40,6 @@ Package.onUse(function(api) {
     'client/views/admin/admin.html',
     'client/views/admin/admin.coffee',
     'client/views/admin/edit.html',
-    'client/views/admin/editor.coffee',
     'client/views/admin/edit.coffee',
     'client/views/blog/blog.less',
     'client/views/blog/blog.html',
@@ -92,13 +83,10 @@ Package.onUse(function(api) {
     'accounts-base',
     'kaptron:minimongoid@0.9.1',
     'mrt:moment@2.8.1',
-    'vsivsi:file-collection@0.3.3',
     'alanning:roles@1.2.13',
     'meteorhacks:fast-render@2.0.2',
     'meteorhacks:subs-manager@1.2.0',
-    'cfs:standard-packages@0.5.3',
-    'cfs:filesystem@0.1.1',
-    'cfs:s3@0.1.1'
+    'summernote:standalone'
   ], both);
 
   // FILES FOR SERVER AND CLIENT
@@ -108,7 +96,6 @@ Package.onUse(function(api) {
     'collections/post.coffee',
     'collections/comment.coffee',
     'collections/tag.coffee',
-    'collections/files.coffee',
     'router.coffee'
   ], both);
 });

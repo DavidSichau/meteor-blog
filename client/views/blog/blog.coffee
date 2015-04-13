@@ -16,6 +16,7 @@ Template.blogShowBody.rendered = ->
 
   settings = Blog.settings.comments
   # check if useSideComments config is true (default is null)
+
   if settings.useSideComments
     SideComments = require 'side-comments'
 

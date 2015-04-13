@@ -19,38 +19,12 @@ substringMatcher = (strs) ->
 
     cb matches
 
-# Toggle between visual and HTML mode
-setEditMode = (tpl, mode) ->
-  tpl.$('.editable').toggle()
-  tpl.$('.html-editor').toggle()
-  tpl.$('.edit-mode a').removeClass 'selected'
-  tpl.$(".#{mode}-toggle").addClass 'selected'
 
 # Save
 save = (tpl, cb) ->
   $form = tpl.$('form')
-  $editable = $('.editable', $form)
-  editor = BlogEditor.make tpl
 
-  # Make paragraphs commentable
-  # remove duplicates
-  $editable.find('p[data-section-id]').each ->
-    sec_id = $(this).attr 'data-section-id'
-    if $editable.find("p[data-section-id=#{sec_id}]").length > 1
-      $editable.find("p[data-section-id=#{sec_id}]:gt(0)").removeAttr 'data-section-id'
-  # decorate
-  i = $editable.find('p[data-section-id]').length + 1
-  $editable.find('p:not([data-section-id])').each ->
-    $(this).addClass('commentable-section').attr('data-section-id', i)
-    i++
-
-  # Highlight code blocks
-  editor.highlightSyntax()
-
-  if $editable.is(':visible')
-    body = editor.contents()
-  else
-    body = $('.html-editor', $form).val().trim()
+  body =  $('[name=largeDescription]', $form).code();
 
   if not body
     return cb(null, new Error 'Blog body is required')
@@ -89,6 +63,10 @@ save = (tpl, cb) ->
 
 Template.blogAdminEdit.rendered = ->
 
+
+  $('textarea[name=largeDescription]').summernote({
+    height: 300
+  });
   # We can't use reactive template vars for contenteditable :-(
   # (https://github.com/meteor/meteor/issues/1964). So we put the single-post
   # subscription in an autorun. If we're loading an existing post, once its
@@ -103,8 +81,7 @@ Template.blogAdminEdit.rendered = ->
       ranOnce = true
       post = getPost( Session.get('postId') )
       if post?.body
-        @$('.editable').html post.body
-        @$('.html-editor').html post.body
+        @$('textarea[name=largeDescription]').code post.body
 
       # Tags
       $tags = @$('[data-role=tagsinput]')
@@ -120,42 +97,16 @@ Template.blogAdminEdit.rendered = ->
         $tags.tagsinput 'add', datum.val
         $tags.tagsinput('input').typeahead 'val', ''
 
-      # Medium editor
-      BlogEditor.make @
+
 
 Template.blogAdminEdit.helpers
   post: ->
     getPost( Session.get('postId') )
 
 Template.blogAdminEdit.events
-  # Toggle between VISUAL/HTML modes
-  'click .visual-toggle': (e, tpl) ->
-    if tpl.$('.editable').is(':visible')
-      return
-
-    BlogEditor.make(tpl).highlightSyntax()
-    setEditMode tpl, 'visual'
-
-  'click .html-toggle': (e, tpl) ->
-    $editable = tpl.$('.editable')
-    $html = tpl.$('.html-editor')
-    if $html.is(':visible')
-      return
-
-    $html.val BlogEditor.make(tpl).pretty()
-    setEditMode tpl, 'html'
-    $html.height($editable.height())
-
-  # Copy HTML content to visual editor and autosize height
-  'keyup .html-editor': (e, tpl) ->
-    $editable = tpl.$('.editable')
-    $html = tpl.$('.html-editor')
-
-    $editable.html($html.val()?.trim())
-    $html.height($editable.height())
 
   # Autosave
-  'input .editable, keydown .editable, keydown .html-editor': _.debounce (e, tpl) ->
+  'input #largeDescription, keydown #largeDescription, keydown #largeDescription': _.debounce (e, tpl) ->
     save tpl, (id, err) ->
       if err
         return Notifications.error '', err.message

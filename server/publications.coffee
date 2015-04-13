@@ -91,6 +91,7 @@ Meteor.publish 'postForAdmin', ->
   sel = {}
 
   # If author role is set, and user is author, only return user's posts
+  console.log(Blog.settings)
   if Blog.settings.authorRole and Roles.userIsInRole(@userId, Blog.settings.authorRole)
     sel = userId: @userId
 

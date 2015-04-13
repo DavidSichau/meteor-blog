@@ -19,7 +19,7 @@ Blog =
     comments:
       allowAnonymous: false
       useSideComments: false
-      defaultImg: '/packages/blog/public/default-user.png'
+      defaultImg: '/packages/ryw_blog/public/default-user.png'
       userImg: 'avatar'
       disqusShortname: null
 
@@ -46,11 +46,7 @@ Blog =
 
 
 Meteor.startup ->
-  # Load Font Awesome
-  $('<link>',
-    href: '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'
-    rel: 'stylesheet'
-  ).appendTo 'head'
+
 
   # Listen for any 'Load More' clicks
   $('body').on 'click', '.blog-load-more', (e) ->
