@@ -30,6 +30,7 @@ Blog =
       delete appConfig.comments
     @settings = _.extend(@settings, appConfig)
 
+
     if @settings.syntaxHighlightingTheme
       $('<link>',
         href: '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/' + @settings.syntaxHighlightingTheme + '.min.css'

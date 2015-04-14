@@ -1,6 +1,6 @@
 Package.describe({
   summary: "A package that provides a blog at /blog",
-  version: "0.7.0",
+  version: "0.7.2",
   name: "davidsichau:blog",
   git: "https://github.com/DavidSichau/meteor-blog"
 });
@@ -19,7 +19,6 @@ Package.onUse(function(api) {
     'less',
     'underscore',
     'aslagle:reactive-table@0.5.5',
-    'joshowens:shareit@0.3.1',
     'gfk:notifications@1.0.11'
   ], 'client');
 
@@ -29,8 +28,10 @@ Package.onUse(function(api) {
     'client/stylesheets/lib/side-comments/side-comments.css',
     'client/stylesheets/lib/side-comments/default.css',
     'client/stylesheets/lib/bootstrap-tagsinput.css',
+    'client/stylesheets/lib/shariff.min.css',
     'client/boot.coffee',
     'client/compatibility/side-comments.js',
+    'client/compatibility/shariff.min.js',
     'client/compatibility/bootstrap-tagsinput.js',
     'client/compatibility/typeahead.jquery.js',
     'client/views/404.html',
@@ -45,6 +46,7 @@ Package.onUse(function(api) {
     'client/views/blog/blog.html',
     'client/views/blog/show.html',
     'client/views/blog/blog.coffee',
+    'client/views/blog/show.js',
     'client/views/widget/latest.html',
     'client/views/widget/latest.coffee'
   ], 'client');
@@ -86,7 +88,8 @@ Package.onUse(function(api) {
     'alanning:roles@1.2.13',
     'meteorhacks:fast-render@2.0.2',
     'meteorhacks:subs-manager@1.2.0',
-    'summernote:standalone@0.6.0_1'
+    'summernote:standalone@0.6.0_1',
+    'tap:i18n@1.4.1'
   ], both);
 
   // FILES FOR SERVER AND CLIENT

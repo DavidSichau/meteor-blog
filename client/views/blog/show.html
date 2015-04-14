@@ -26,10 +26,14 @@
       {{{html}}}
     </div>
   </article>
-  <div class="blog-back-link pull-left">
-    <a href="{{pathFor 'blogIndex'}}"><i class="fa fa-caret-left"></i>Back to the Blog</a>
-  </div>
-  {{> shareit}}
+    <div class="col-md-4">
+        <div class="blog-back-link pull-left">
+            <a href="{{pathFor 'blogIndex'}}"><i class="fa fa-caret-left"></i>Back to the Blog</a>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="shariff"></div>
+    </div>
   {{> disqus this}}
 </template>
 
