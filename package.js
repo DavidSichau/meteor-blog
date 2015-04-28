@@ -1,6 +1,6 @@
 Package.describe({
   summary: "A package that provides a blog at /blog",
-  version: "0.7.3",
+  version: "0.7.4",
   name: "davidsichau:blog",
   git: "https://github.com/DavidSichau/meteor-blog"
 });
