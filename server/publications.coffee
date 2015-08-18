@@ -13,15 +13,11 @@ Meteor.publish 'singlePostBySlug', (slug) ->
 
   Post.find slug: slug
 
-Meteor.publish 'posts', (limit) ->
-  check limit, Match.OneOf(Number, null)
-
-  if limit is null then return @ready()
+Meteor.publish 'posts', () ->
 
   Post.find { published: true },
     fields: body: 0
     sort: publishedAt: -1
-    limit: limit
 
 Meteor.publish 'taggedPosts', (tag) ->
   check tag, String

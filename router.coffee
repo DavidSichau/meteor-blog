@@ -1,7 +1,3 @@
-subs = new SubsManager
-  cacheLimit: 10, # Maximum number of cache subscriptions
-  expireIn: 5 # Any subscription will be expire after 5 minute, if it's not subscribed again
-
 if Meteor.isClient
   Router.onBeforeAction ->
     @notFoundTemplate =
@@ -26,15 +22,10 @@ Router.route '/rss/posts',
 Router.route '/blog',
   name: 'blogIndex'
   template: 'custom'
-  onRun: ->
-    if not Session.get('postLimit') and Blog.settings.pageSize
-      Session.set 'postLimit', Blog.settings.pageSize
-    @next()
   waitOn: ->
-    if (typeof Session isnt 'undefined')
       [
-        subs.subscribe 'posts', Session.get('postLimit')
-        subs.subscribe 'authors'
+        Meteor.subscribe 'posts'
+        Meteor.subscribe 'authors'
       ]
   fastRender: true
   data: ->
@@ -47,8 +38,8 @@ Router.route '/blog/tag/:tag',
   name: 'blogTagged'
   template: 'custom'
   waitOn: -> [
-    subs.subscribe 'taggedPosts', @params.tag
-    subs.subscribe 'authors'
+    Meteor.subscribe 'taggedPosts', @params.tag
+    Meteor.subscribe 'authors'
   ]
   fastRender: true
   data: ->
@@ -89,8 +80,8 @@ Router.route '/blog/:slug',
     @render() if @ready()
   waitOn: -> [
     Meteor.subscribe 'singlePostBySlug', @params.slug
-    subs.subscribe 'commentsBySlug', @params.slug
-    subs.subscribe 'authors'
+    Meteor.subscribe 'commentsBySlug', @params.slug
+    Meteor.subscribe 'authors'
   ]
   data: ->
     Post.first slug: @params.slug

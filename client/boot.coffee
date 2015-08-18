@@ -41,12 +41,6 @@ Blog =
 Meteor.startup ->
 
 
-  # Listen for any 'Load More' clicks
-  $('body').on 'click', '.blog-load-more', (e) ->
-    e.preventDefault()
-    if Session.get 'postLimit'
-      Session.set 'postLimit', Session.get('postLimit') + Blog.settings.pageSize
-
   # Notifications package
   _.extend Notifications.defaultOptions,
     timeout: 5000
@@ -73,6 +67,3 @@ UI.registerHelper "joinTags", (list) ->
   if list
     list.join ', '
 
-UI.registerHelper "blogPager", ->
-  if Post.count() is Session.get 'postLimit'
-    return new Spacebars.SafeString '<a class="blog-load-more btn" href="#">Load More</a>'

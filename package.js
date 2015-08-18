@@ -13,7 +13,7 @@ Package.onUse(function(api) {
   // PACKAGES FOR CLIENT
 
   api.use([
-    'session',
+    'u2622:persistent-session@0.4.1',
     'templating',
     'ui',
     'less',
@@ -87,7 +87,6 @@ Package.onUse(function(api) {
     'mrt:moment@2.8.1',
     'alanning:roles@1.2.13',
     'meteorhacks:fast-render@2.0.2',
-    'meteorhacks:subs-manager@1.2.0',
     'summernote:standalone@0.6.0_1',
     'tap:i18n@1.4.1'
   ], both);
