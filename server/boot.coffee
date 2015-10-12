@@ -4,13 +4,17 @@
 
 Blog =
   settings:
-    adminRole: null
-    adminGroup: null
-    authorRole: null
-    authorGroup: null
-    rss:
-      title: ''
-      description: ''
+    adminRole: 'blogAdmin',
+    authorRole: 'blogAuthor',
+    adminGroup: 'accessRight',
+    pageSize: 10,
+    authorGroup: 'accessRight',
+    comments:
+      useSideComments: true,
+      disqusShortname: "etutorial"
+  rss:
+    title: 'My blog title',
+    description: 'My blog description'
 
   config: (appConfig) ->
     @settings = _.extend(@settings, appConfig)

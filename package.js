@@ -1,6 +1,6 @@
 Package.describe({
   summary: "A package that provides a blog at /blog",
-  version: "0.7.4",
+  version: "0.8.0",
   name: "davidsichau:blog",
   git: "https://github.com/DavidSichau/meteor-blog"
 });
@@ -16,10 +16,10 @@ Package.onUse(function(api) {
     'u2622:persistent-session@0.4.1',
     'templating',
     'ui',
-    'less',
+    'less@2.5.0',
     'underscore',
-    'aslagle:reactive-table@0.5.5',
-    'gfk:notifications@1.0.11'
+    'aslagle:reactive-table@0.8.13-beta1',
+    'gfk:notifications@1.1.4'
   ], 'client');
 
   // FILES FOR CLIENT
@@ -53,14 +53,14 @@ Package.onUse(function(api) {
 
   // STATIC ASSETS FOR CLIENT
 
-  api.addFiles([
+  api.addAssets([
     'public/default-user.png',
     'client/stylesheets/images/remove.png',
     'client/stylesheets/images/link.png',
     'client/stylesheets/images/unlink.png',
     'client/stylesheets/images/resize-bigger.png',
     'client/stylesheets/images/resize-smaller.png'
-  ], 'client', { isAsset: true });
+  ], 'client');
 
   // FILES FOR SERVER
 
@@ -80,13 +80,14 @@ Package.onUse(function(api) {
   api.use([
     'coffeescript',
     'deps',
+    'random',
     'iron:router@1.0.0',
     'iron:location@1.0.0',
     'accounts-base',
     'kaptron:minimongoid@0.9.1',
     'mrt:moment@2.8.1',
     'alanning:roles@1.2.13',
-    'meteorhacks:fast-render@2.0.2',
+    'meteorhacks:fast-render@2.10.0',
     'summernote:standalone@0.6.0_1',
     'tap:i18n@1.4.1'
   ], both);
